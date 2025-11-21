@@ -1,216 +1,230 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>For Siddhavi — A Little Website of Love</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#071022;
-    --card:#0b1220;
-    --accent:#ff6b81;
-    --muted:#94a3b8;
-    --glass: rgba(255,255,255,0.04);
-    --heart:#ff7aa3;
-    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(ellipse at top, rgba(255,107,129,0.06), transparent 30%), linear-gradient(180deg,var(--bg), #04101a);color:#e6eef8;min-height:100vh;overflow-x:hidden}
-  .container{max-width:980px;margin:36px auto;padding:20px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Siddhavi &amp; You — A Little Website of Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#071022;
+      --card:#0b1220;
+      --accent:#ff6b81;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --heart:#ff7aa3;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at top, rgba(255,107,129,0.05), transparent 30%), linear-gradient(180deg,var(--bg), #04101a);color:#e6eef8;min-height:100vh;overflow-x:hidden}
+    .container{max-width:980px;margin:36px auto;padding:20px}
 
-  header{display:flex;align-items:center;gap:16px}
-  .avatar{width:108px;height:108px;border-radius:18px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  h1{margin:0;font-size:1.6rem}
-  p.lead{color:var(--muted);margin-top:6px}
+    header{display:flex;align-items:center;gap:16px}
+    .avatar{width:108px;height:108px;border-radius:18px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin-top:6px}
 
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;margin-top:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-  .stats{display:flex;gap:14px;margin-top:12px}
-  .stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center}
-  .stat strong{display:block;font-size:1.2rem}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;margin-top:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .stats{display:flex;gap:14px;margin-top:12px}
+    .stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center}
+    .stat strong{display:block;font-size:1.2rem}
 
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
-  .photo{position:relative;border-radius:12px;overflow:hidden;background:#071b27;min-height:100px;transition:transform .18s}
-  .photo:hover{transform:translateY(-6px)}
-  .photo img,.photo video{width:100%;height:160px;object-fit:cover;display:block;border:0;background:#061222}
-  .photo .caption{position:absolute;left:10px;bottom:10px;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.18));font-size:0.85rem}
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
+    .photo{position:relative;border-radius:12px;overflow:hidden;background:#071b27;min-height:100px;transition:transform .18s,opacity .4s,filter .4s}
+    .photo:hover{transform:translateY(-6px)}
+    .photo img,.photo video{width:100%;height:160px;object-fit:cover;display:block;border:0;background:#061222}
+    .photo .caption{position:absolute;left:10px;bottom:10px;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.18));font-size:0.85rem}
 
-  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
-  .btn{background:linear-gradient(90deg,var(--accent),#ff8aa3);border:none;padding:10px 14px;border-radius:10px;color:#062034;font-weight:700;cursor:pointer}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px}
-  label.uploader{display:inline-block;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.04);cursor:pointer}
+    /* Fade-in + zoom effect */
+    .photo { opacity: 0; transform: translateY(8px) scale(0.99); filter: blur(6px); }
+    .photo.loaded { opacity:1; transform: translateY(0) scale(1); filter: blur(0); transition: transform .6s cubic-bezier(.2,.9,.25,1), opacity .6s ease, filter .6s ease; }
 
-  footer{margin-top:22px;color:var(--muted);font-size:0.95rem;text-align:center}
+    /* Controls area (removed upload & shuffle per request) */
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),#ff8aa3);border:none;padding:10px 14px;border-radius:10px;color:#062034;font-weight:700;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px}
 
-  /* Lightbox */
-  .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.82);display:flex;align-items:center;justify-content:center;padding:20px;z-index:140;visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
-  .lightbox.open{visibility:visible;opacity:1}
-  .lightbox-inner{max-width:94vw;max-height:92vh;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .lightbox img,.lightbox video{max-width:100%;max-height:100%;display:block;border-radius:8px}
+    footer{margin-top:22px;color:var(--muted);font-size:0.95rem;text-align:center}
 
-  /* Love card flip */
-  .love-card { width:100%; height:220px; perspective:1000px; margin-top:18px; }
-  .love-card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .9s cubic-bezier(.2,.9,.25,1); cursor:pointer; border-radius:14px }
-  .love-card.flipped .love-card-inner { transform:rotateY(180deg) }
-  .love-card-front, .love-card-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:14px; display:flex; align-items:center; justify-content:center; padding:18px; text-align:center }
-  .love-card-front { background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04) }
-  .love-card-back { transform:rotateY(180deg); background:linear-gradient(135deg, rgba(255,107,129,0.06), rgba(255,138,163,0.03)); color: #fff; font-size:1.05rem; line-height:1.45; box-shadow: 0 8px 30px rgba(255,107,129,0.04) }
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.82);display:flex;align-items:center;justify-content:center;padding:20px;z-index:140;visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
+    .lightbox.open{visibility:visible;opacity:1}
+    .lightbox-inner{max-width:94vw;max-height:92vh;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .lightbox img,.lightbox video{max-width:100%;max-height:100%;display:block;border-radius:8px}
 
-  /* Floating hearts */
-  .hearts { pointer-events:none; position:fixed; inset:0; z-index:0; overflow:hidden }
-  .heart { position:absolute; width:16px; height:16px; transform:translateY(100vh); opacity:0.95; animation:rise 6s linear infinite; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.35)) }
-  .heart::before, .heart::after { content:""; position:absolute; width:100%; height:100%; background:var(--heart); border-radius:50%; }
-  .heart::before { transform:translateX(-50%); left:25% }
-  .heart::after { transform:translateX(50%); right:25% }
-  @keyframes rise {
-    0% { transform:translateY(100vh) scale(.6); opacity:0 }
-    10% { opacity:1 }
-    60% { opacity:1 }
-    100% { transform:translateY(-10vh) scale(1.2); opacity:0 }
-  }
+    /* Love card flip */
+    .love-card { width:100%; height:220px; perspective:1000px; margin-top:18px; }
+    .love-card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .9s cubic-bezier(.2,.9,.25,1); cursor:pointer; border-radius:14px; }
+    .love-card.flipped .love-card-inner { transform:rotateY(180deg) }
+    .love-card-front, .love-card-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:14px; display:flex; align-items:center; justify-content:center; padding:18px; text-align:center }
+    .love-card-front { background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); color:var(--muted); font-weight:600; }
+    .love-card-back { transform:rotateY(180deg); background:linear-gradient(135deg, rgba(255,107,129,0.06), rgba(255,138,163,0.03)); color: #fff; font-size:1.05rem; line-height:1.45; box-shadow: 0 8px 30px rgba(255,107,129,0.04) }
 
-  /* small helpers */
-  @media(max-width:560px){ .avatar{width:84px;height:84px} .photo img,.photo video{height:140px} .love-card{height:180px} }
-  .placeholder{display:flex;align-items:center;justify-content:center;height:160px;color:var(--muted);font-size:0.95rem;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
-</style>
+    .heart-icon {
+      width:72px;height:72px;border-radius:20px; display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff8aa3,#ff6b81); box-shadow:0 12px 30px rgba(255,107,129,0.12); transform:translateY(-6px);
+    }
+    .heart-icon svg{width:42px;height:42px;display:block;filter:drop-shadow(0 6px 18px rgba(255,107,129,0.12))}
+
+    /* Floating hearts */
+    .hearts { pointer-events:none; position:fixed; inset:0; z-index:0; overflow:hidden }
+    .heart { position:absolute; width:16px; height:16px; transform:translateY(100vh); opacity:0.95; animation:rise 6s linear infinite; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.35)) }
+    .heart::before, .heart::after { content:""; position:absolute; width:100%; height:100%; background:var(--heart); border-radius:50%; }
+    .heart::before { transform:translateX(-50%); left:25% }
+    .heart::after { transform:translateX(50%); right:25% }
+    @keyframes rise {
+      0% { transform:translateY(100vh) scale(.6); opacity:0 }
+      10% { opacity:1 }
+      60% { opacity:1 }
+      100% { transform:translateY(-10vh) scale(1.2); opacity:0 }
+    }
+
+    @media(max-width:560px){ .avatar{width:84px;height:84px} .photo img,.photo video{height:140px} .love-card{height:180px} }
+    .placeholder{display:flex;align-items:center;justify-content:center;height:160px;color:var(--muted);font-size:0.95rem;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+  </style>
 </head>
 <body>
-<div class="hearts" aria-hidden="true"></div>
+  <div class="hearts" aria-hidden="true"></div>
 
-<div class="container">
-  <header>
-    <div class="avatar" id="mainAvatar">
-      <!-- fixed avatar: uses the image from images/ -->
-      <img src="images/Snapchat-344609506.jpg" alt="Siddhavi" id="avatarImg" onerror="avatarFallback(this)">
-    </div>
-    <div>
-      <h1>For Siddhavi — with love 💖</h1>
-      <p class="lead">A little page to celebrate the good stuff. Built with lots of love.</p>
-      <div class="stats">
-        <div class="stat">
-          <span style="color:var(--muted);font-size:0.9rem">Days Together</span>
-          <strong id="days">—</strong>
-        </div>
-        <div class="stat">
-          <span style="color:var(--muted);font-size:0.9rem">Since</span>
-          <strong>Oct 3, 2024</strong>
-        </div>
+  <div class="container">
+    <header>
+      <div class="avatar" id="mainAvatar">
+        <img src="images/Snapchat-344609506.jpg" alt="Siddhavi" id="avatarImg" onerror="avatarFallback(this)">
       </div>
-    </div>
-  </header>
-
-  <section class="card">
-    <h2 style="margin:0 0 6px 0">Our gallery</h2>
-    <p style="margin:0;color:var(--muted);font-size:0.95rem">Tap any photo or video to view it larger. Captions show the dates you provided.</p>
-
-    <div class="controls">
-      <label for="photoInput" class="uploader">Choose Photos/Videos</label>
-      <input id="photoInput" type="file" accept="image/*,video/*" multiple>
-      <button id="shuffleBtn" class="ghost">Shuffle</button>
-      <button id="downloadBtn" class="ghost" title="Save images locally" style="display:none">Download</button>
-    </div>
-
-    <div id="gallery" class="gallery" style="margin-top:14px">
-      <!-- IMAGES (please put the exact files into /images/) -->
-      <div class="photo"><img loading="lazy" src="images/Snapchat-344609506.jpg" alt="Snapchat-344609506" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-162159466.jpg" alt="Snapchat-162159466" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-873593879.jpg" alt="Snapchat-873593879" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-527620421.jpg" alt="Snapchat-527620421" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-2142615637.jpg" alt="Snapchat-2142615637" onerror="showPlaceholder(this)"><div class="caption">Date unknown</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1175841972.jpg" alt="Snapchat-1175841972" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-75909800.jpg" alt="Snapchat-75909800" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-432316162.jpg" alt="Snapchat-432316162" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1061100202.jpg" alt="Snapchat-1061100202" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1994609448.jpg" alt="Snapchat-1994609448" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-778282584.jpg" alt="Snapchat-778282584" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1019783900.jpg" alt="Snapchat-1019783900" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-344543242.jpg" alt="Snapchat-344543242" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1445988979.jpg" alt="Snapchat-1445988979" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1901899807.jpg" alt="Snapchat-1901899807" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Snapchat-1401782366.jpg" alt="Snapchat-1401782366" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
-      <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)"><div class="caption">20/11/2025</div></div>
-
-      <!-- VIDEOS (put files in /video/) -->
-      <div class="photo">
-        <video controls preload="metadata" playsinline data-src="video/WhatsApp Video 2025-11-21 at 06.44.38.mp4">
-          <source src="video/WhatsApp Video 2025-11-21 at 06.44.38.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-      </div>
-
-      <div class="photo">
-        <video controls preload="metadata" playsinline data-src="video/WhatsApp Video 2025-11-21 at 06.44.40.mp4">
-          <source src="video/WhatsApp Video 2025-11-21 at 06.44.40.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-      </div>
-
-      <div class="photo">
-        <video controls preload="metadata" playsinline data-src="video/WhatsApp Video 2025-11-21 at 06.45.23.mp4">
-          <source src="video/WhatsApp Video 2025-11-21 at 06.45.23.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Interactive Love Note Card -->
-  <section class="card" aria-label="Love note card">
-    <h2 style="margin:0 0 6px 0">A love note</h2>
-    <p style="color:var(--muted)">Click the card below to flip and reveal a message written from the heart. Click again to hide it.</p>
-
-    <div class="love-card" id="loveCard" role="button" tabindex="0" aria-pressed="false" aria-label="Flip love card">
-      <div class="love-card-inner">
-        <div class="love-card-front" aria-hidden="false">
-          <div>
-            <div style="font-size:1.05rem;color:var(--muted)">Click me, Sonu ❤️</div>
-            <div style="margin-top:10px;color:var(--muted);font-size:0.9rem">Click to see your message</div>
+      <div>
+        <h1>For Siddhavi — with love 💖</h1>
+        <p class="lead">A little page to celebrate the good stuff. Built with lots of love.</p>
+        <div class="stats">
+          <div class="stat">
+            <span style="color:var(--muted);font-size:0.9rem">Days Together</span>
+            <strong id="days">—</strong>
           </div>
-        </div>
-        <div class="love-card-back" aria-hidden="true">
-          <div>
-            <strong style="display:block;font-size:1.05rem;margin-bottom:8px">To my shone, my babde, my babu —</strong>
-            You are my smile every morning and my comfort every night. Thank you for your love, your patience, your wonderful laugh, and for being my person. I promise to fight for us, to learn with you, to build our dreams and to stay by your side — forever.  
-            <br><br>
-            All my love, always — your Sonu. 💖
+          <div class="stat">
+            <span style="color:var(--muted);font-size:0.9rem">Since</span>
+            <strong>Oct 3, 2024</strong>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <footer>
-    Crafted with joy • Want a hero image or other tweaks? Tell me which file to use and I'll update the header.
-  </footer>
-</div>
+    <section class="card">
+      <h2 style="margin:0 0 6px 0">Our gallery</h2>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem">Our Relationship is not just a relationship, it's a forever promise we made to each other. Here are a few of the best moments.</p>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-inner" onclick="event.stopPropagation()">
-    <div id="lightboxContent"></div>
+      <!-- Controls removed as requested (no upload, no shuffle) -->
+      <div class="controls" style="display:none"></div>
+
+      <div id="gallery" class="gallery" style="margin-top:14px">
+        <!-- IMAGES (put the exact files into /images/) -->
+        <div class="photo"><img loading="lazy" src="images/Snapchat-344609506.jpg" alt="Snapchat-344609506" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-162159466.jpg" alt="Snapchat-162159466" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-873593879.jpg" alt="Snapchat-873593879" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-527620421.jpg" alt="Snapchat-527620421" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-2142615637.jpg" alt="Snapchat-2142615637" onerror="showPlaceholder(this)"><div class="caption">Date unknown</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1175841972.jpg" alt="Snapchat-1175841972" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-75909800.jpg" alt="Snapchat-75909800" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-432316162.jpg" alt="Snapchat-432316162" onerror="showPlaceholder(this)"><div class="caption">15/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1061100202.jpg" alt="Snapchat-1061100202" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1994609448.jpg" alt="Snapchat-1994609448" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-778282584.jpg" alt="Snapchat-778282584" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1019783900.jpg" alt="Snapchat-1019783900" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-344543242.jpg" alt="Snapchat-344543242" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1445988979.jpg" alt="Snapchat-1445988979" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1901899807.jpg" alt="Snapchat-1901899807" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Snapchat-1401782366.jpg" alt="Snapchat-1401782366" onerror="showPlaceholder(this)"><div class="caption">07/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)"><div class="caption">04/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)"><div class="caption">09/11/2025</div></div>
+        <div class="photo"><img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)"><div class="caption">20/11/2025</div></div>
+
+        <!-- VIDEOS (these are included exactly as they are in your repo/local upload) -->
+        <div class="photo">
+          <video controls preload="metadata" playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4">
+            <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4" type="video/mp4">
+          </video>
+          <div class="caption">21/11/2025</div>
+        </div>
+
+        <div class="photo">
+          <video controls preload="metadata" playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4">
+            <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4" type="video/mp4">
+          </video>
+          <div class="caption">21/11/2025</div>
+        </div>
+
+        <div class="photo">
+          <video controls preload="metadata" playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4">
+            <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4" type="video/mp4">
+          </video>
+          <div class="caption">21/11/2025</div>
+        </div>
+
+        <div class="photo">
+          <video controls preload="metadata" playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4">
+            <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" type="video/mp4">
+          </video>
+          <div class="caption">21/11/2025 (filename has trailing space)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Love Note Card (front = heart + "For My Shone", back = message) -->
+    <section class="card" aria-label="Love note card">
+      <h2 style="margin:0 0 6px 0">A love note</h2>
+      <p style="color:var(--muted)">Click the card below to flip and reveal a message written from the heart. Click again to hide it.</p>
+
+      <div class="love-card" id="loveCard" role="button" tabindex="0" aria-pressed="false" aria-label="Flip love card">
+        <div class="love-card-inner">
+          <div class="love-card-front" aria-hidden="false" style="flex-direction:column">
+            <div class="heart-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 21s-7.5-4.9-10.2-8.1C-0.1 9.6 2.2 5 6.3 5 8.5 5 10 6.2 11 7.4 12 6.2 13.5 5 15.7 5c4.1 0 6.4 4.6 4.5 7.9C19.5 16.1 12 21 12 21z"/>
+              </svg>
+            </div>
+            <div style="margin-top:12px;font-size:1.1rem;color:var(--muted);font-weight:700">For My Shone 💖</div>
+            <div style="margin-top:6px;color:var(--muted)">Tap to reveal</div>
+          </div>
+          <div class="love-card-back" aria-hidden="true">
+            <div>
+              <strong style="display:block;font-size:1.05rem;margin-bottom:8px">To my shone, my babde, my babu —</strong>
+              You are my smile every morning and my comfort every night. Thank you for your love, your patience, your wonderful laugh, and for being my person. I promise to fight for us, to learn with you, to build our dreams and to stay by your side — forever.  
+              <br><br>
+              I love you more than words can hold. Always yours — <strong>Sonu</strong>. 💖
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      I hope we really get married and live happily.
+    </footer>
   </div>
-</div>
 
-<!-- Background music: place music.mp3 (or music.wav) next to this HTML -->
-<audio id="bgMusic" loop preload="none">
-  <source src="music.mp3" type="audio/mpeg">
-  <source src="music.wav" type="audio/wav">
-</audio>
-<div style="position:fixed;right:18px;bottom:18px;z-index:200">
-  <button id="musicToggle" class="btn" style="padding:8px 10px;font-size:0.95rem">Play music</button>
-</div>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <div id="lightboxContent"></div>
+    </div>
+  </div>
+
+  <!-- Background music: place music.mp3 (or music.wav) next to this HTML -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="music.wav" type="audio/wav">
+  </audio>
+  <div style="position:fixed;right:18px;bottom:18px;z-index:200">
+    <button id="musicToggle" class="btn" style="padding:8px 10px;font-size:0.95rem">Play music</button>
+  </div>
 
 <script>
   // DAYS TOGETHER
   const startDate = new Date('2024-10-03T00:00:00');
   document.getElementById('days').innerText = Math.floor((new Date() - startDate)/(1000*60*60*24));
 
-  // HEARTS generation
+  // HEARTS generation (floating hearts background)
   const heartsContainer = document.querySelector('.hearts');
   const heartCount = 14;
   for(let i=0;i<heartCount;i++){
@@ -219,12 +233,11 @@
     const size = 12 + Math.random()*28;
     h.style.width = size+'px';
     h.style.height = size+'px';
-    h.style.left = Math.random()*100 + 'vw';
+    h.style.left = (Math.random()*90) + 'vw';
     h.style.animationDuration = (5 + Math.random()*5) + 's';
     h.style.opacity = 0.8 + Math.random()*0.2;
     h.style.transform = 'translateY(100vh) rotate(' + (Math.random()*60-30) + 'deg)';
     heartsContainer.appendChild(h);
-    // random delay so they float at different times
     h.style.animationDelay = (Math.random()*-6)+'s';
   }
 
@@ -236,7 +249,6 @@
     imgEl.parentNode.replaceChild(p, imgEl);
   }
   function avatarFallback(img){
-    // simple fallback: replace src with a tiny svg if avatar missing
     img.onerror = null;
     img.src = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="100%" height="100%" fill="#08131a"/><text x="50%" y="50%" fill="#fff" font-size="36" text-anchor="middle" dominant-baseline="middle">Siddhavi</text></svg>');
   }
@@ -268,63 +280,30 @@
     lightboxContent.innerHTML = '';
   }
 
-  // wire gallery clicks (images and videos)
+  // Wire gallery clicks (images and videos) and apply fade-in loaded class
   function wireGalleryClicks(){
     document.querySelectorAll('.gallery .photo').forEach(card => {
       const img = card.querySelector('img');
       const vid = card.querySelector('video');
+
+      // fade-in: mark loaded when image/video metadata loads
       if(img){
+        img.addEventListener('load', ()=> card.classList.add('loaded'));
+        // in case already cached
+        if(img.complete) card.classList.add('loaded');
+
         img.style.cursor = 'zoom-in';
         img.addEventListener('click', ()=> openLightbox('image', img.src));
       } else if(vid){
-        // open video in lightbox
+        // mark loaded when metadata available
+        vid.addEventListener('loadedmetadata', ()=> card.classList.add('loaded'));
+        vid.style.cursor = 'pointer';
         const src = vid.getAttribute('data-src') || vid.querySelector('source')?.src || vid.src;
-        vid.addEventListener('click', (e)=>{
-          // if clicking actual controls, let it play inline — otherwise open in lightbox
-          if(e.target.tagName.toLowerCase() === 'video' && e.target.controls){
-            openLightbox('video', src);
-          }
-        });
+        vid.addEventListener('click', ()=> openLightbox('video', src));
       }
     });
   }
   wireGalleryClicks();
-
-  // Upload preview handler
-  const photoInput = document.getElementById('photoInput'), gallery = document.getElementById('gallery');
-  photoInput.addEventListener('change', (e)=>{
-    const files = Array.from(e.target.files);
-    files.forEach(file=>{
-      const reader = new FileReader();
-      reader.onload = (ev)=>{
-        const src = ev.target.result;
-        const div = document.createElement('div'); div.className = 'photo';
-        if(file.type.startsWith('image/')){
-          div.innerHTML = `<img src="${src}" alt="${escapeHtml(file.name)}"><div class="caption">${escapeHtml(file.name)}</div>`;
-          gallery.prepend(div);
-          div.querySelector('img').addEventListener('click', ()=> openLightbox('image', src));
-        } else if(file.type.startsWith('video/')){
-          div.innerHTML = `<video controls preload="metadata" playsinline src="${src}"></video><div class="caption">${escapeHtml(file.name)}</div>`;
-          gallery.prepend(div);
-          div.querySelector('video').addEventListener('click', ()=> openLightbox('video', src));
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-    e.target.value = '';
-    wireGalleryClicks();
-  });
-
-  // SHUFFLE
-  document.getElementById('shuffleBtn').addEventListener('click', ()=>{
-    const items = Array.from(gallery.children);
-    for(let i=items.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
-      gallery.appendChild(items[j]);
-      items.splice(j,1);
-    }
-    wireGalleryClicks();
-  });
 
   // LOVE CARD flip + keyboard
   const loveCard = document.getElementById('loveCard');
@@ -344,10 +323,10 @@
     else { bg.pause(); mbtn.innerText='Play music'; playing=false }
   });
 
-  // HTML escape
+  // HTML escape helper
   function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  // Ensure clicks wired after load
+  // Ensure gallery wiring after load
   window.addEventListener('load', wireGalleryClicks);
 </script>
 </body>
