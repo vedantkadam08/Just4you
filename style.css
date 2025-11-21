@@ -48,69 +48,39 @@
     --muted: #777;
 }
 
-/* Gallery grid */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-    gap: 12px;
+/* GALLERY POPUP BACKDROP */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 9999;
 }
 
-/* Photo/video wrapper */
-.photo {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    background:#000;
+/* CONTENT (IMG or VIDEO) */
+#lightbox-content {
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;  /* 🔥 keeps aspect ratio without stretch */
+  border-radius: 10px;
 }
 
-/* Images + Videos */
+/* Close button */
+#lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* Remove '+' icon on hover */
 .photo img,
-.photo video {
-    width: 100%;
-    height: auto;
-    display: block;
-    cursor: pointer;
-    object-fit: cover; /* cropped thumbnail, NOT stretched */
-}
-
-/* Caption */
-.caption {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    padding:4px 6px;
-    font-size:0.8rem;
-    color:#fff;
-    background:rgba(0,0,0,0.45);
-}
-
-/* REMOVE the + ICON completely */
-.photo::after {
-    display:none !important;
-}
-
-/* LIGHTBOX */
-.lightbox {
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background:rgba(0,0,0,0.85);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-}
-
-/* Lightbox Image */
-.lightbox img {
-    max-width:90vw;
-    max-height:90vh;
-    object-fit:contain; /* preserves original shape */
-}
-
-/* Show lightbox */
-.lightbox.show {
-    display:flex;
+.video-thumb img {
+  cursor: pointer !important;
 }
