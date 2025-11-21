@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Memories</title>
+<title>Our Memories ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter&display=swap" rel="stylesheet">
 <style>
     body {
@@ -120,7 +120,7 @@
 <div class="counter" id="daysTogether"></div>
 
 <div class="gallery" id="gallery">
-    <!-- Example Photos/Videos with captions in ascending order -->
+    <!-- Ascending dates with captions -->
     <div class="gallery-item" data-type="photo" data-src="images/photo1.jpg">
         <img src="images/photo1.jpg" alt="First shopping">
         <div class="caption">4/11 - First shopping together 🛍️❤️</div>
@@ -129,7 +129,7 @@
         <img src="images/photo2.jpg" alt="Forehead kiss">
         <div class="caption">9/11 - First forehead kiss 😘</div>
     </div>
-    <!-- Add your videos here -->
+    <!-- Example videos -->
     <div class="gallery-item" data-type="video" data-src="videos/video1.mp4">
         <video src="videos/video1.mp4" muted></video>
         <div class="caption">Video memory 1</div>
@@ -164,7 +164,6 @@
     const galleryItems = document.querySelectorAll('.gallery-item');
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = document.getElementById('lightboxContent');
-    const closeBtn = document.getElementById('closeBtn');
 
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
