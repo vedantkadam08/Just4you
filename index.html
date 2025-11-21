@@ -30,35 +30,10 @@
     .stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center}
     .stat strong{display:block;font-size:1.2rem}
 
-    /* Gallery Layout FIX */
-    .gallery{
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-        gap:12px;
-        margin-top:14px;
-        /* Ensure rows auto-fit content height */
-        grid-auto-rows: min-content; 
-    }
-    .photo{
-        position:relative;
-        border-radius:12px;
-        overflow:hidden;
-        background:#071b27;
-        /* Remove fixed min-height to allow content to dictate size */
-        min-height: 0; 
-    }
-    .photo img,.photo video{
-        width:100%;
-        /* REMOVED fixed height: 160px */
-        height: auto; 
-        aspect-ratio: 1 / 1; /* Default to square, ensuring uniform height for most images */
-        object-fit:cover;
-        display:block;
-        border:0;
-        background:#061222;
-        cursor:pointer;
-    }
-
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
+    .photo{position:relative;border-radius:12px;overflow:hidden;background:#071b27;min-height:100px}
+    .photo img,.photo video{width:100%;;height:160px;object-fit:cover;display:block;border:0;background:#061222;cursor:pointer}
     .caption{position:relative;margin-top:8px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:6px}
 
     /* fade-in */
@@ -103,15 +78,10 @@
       100% { transform:translateY(-10vh) scale(1.2); opacity:0 }
     }
 
-    @media(max-width:560px){ 
-        .avatar{width:84px;height:84px} 
-        /* Removed fixed height for media on mobile too */
-        .photo img,.photo video{height:auto} 
-        .love-card{height:180px} 
-    }
-    .placeholder{display:flex;align-items:center;justify-content:center;aspect-ratio: 1 / 1; color:var(--muted);font-size:0.95rem;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    @media(max-width:560px){ .avatar{width:84px;height:84px} .photo img,.photo video{height:140px} .love-card{height:180px} }
+    .placeholder{display:flex;align-items:center;justify-content:center;height:160px;color:var(--muted);font-size:0.95rem;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
 
-    /* 💖 POPUP STYLES 💖 */
+    /* 💖 NEW POPUP STYLES 💖 */
     #introPopup {
         position: fixed;
         inset: 0;
@@ -182,141 +152,141 @@
     </header>
 
     <section class="card" aria-label="Gallery">
-      <h2 style="margin:0 0 6px 0">Our gallery</h2>
+            <h2 style="margin:0 0 6px 0">Our gallery</h2>
       <p style="margin:0;color:var(--muted);font-size:0.95rem">Our Relationship is not just a relationship, it's a forever promise we made to each other. Here are a few of the best moments.</p>
 
       <div id="gallery" class="gallery">
 
-        <div class="photo" data-date="09/11/2025" data-type="image" data-src="images/Snapchat-344609506.jpg" data-alt="Snapchat-344609506">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344609506.jpg" alt="Snapchat-344609506" onerror="showPlaceholder(this)"></div>
+                <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344609506.jpg" alt="Snapchat-344609506" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">09/11/2025</div>
         </div>
 
-        <div class="photo" data-date="09/11/2025" data-type="image" data-src="images/Snapchat-162159466.jpg" data-alt="Snapchat-162159466">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-162159466.jpg" alt="Snapchat-162159466" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-162159466.jpg" alt="Snapchat-162159466" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">09/11/2025</div>
         </div>
 
-        <div class="photo" data-date="09/11/2025" data-type="image" data-src="images/Snapchat-873593879.jpg" data-alt="Snapchat-873593879">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-873593879.jpg" alt="Snapchat-873593879" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-873593879.jpg" alt="Snapchat-873593879" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">09/11/2025</div>
         </div>
 
-        <div class="photo" data-date="09/11/2025" data-type="image" data-src="images/Snapchat-527620421.jpg" data-alt="Snapchat-527620421">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-527620421.jpg" alt="Snapchat-527620421" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-527620421.jpg" alt="Snapchat-527620421" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">09/11/2025</div>
         </div>
 
-        <div class="photo" data-date="Unknown" data-type="image" data-src="images/Snapchat-2142615637.jpg" data-alt="Snapchat-2142615637">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-2142615637.jpg" alt="Snapchat-2142615637" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-2142615637.jpg" alt="Snapchat-2142615637" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">Date unknown</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="image" data-src="images/Snapchat-1175841972.jpg" data-alt="Snapchat-1175841972">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1175841972.jpg" alt="Snapchat-1175841972" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1175841972.jpg" alt="Snapchat-1175841972" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="image" data-src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" data-alt="Screenshot 2025-11-15">
-          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="image" data-src="images/Snapchat-75909800.jpg" data-alt="Snapchat-75909800">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-75909800.jpg" alt="Snapchat-75909800" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-75909800.jpg" alt="Snapchat-75909800" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="image" data-src="images/Snapchat-432316162.jpg" data-alt="Snapchat-432316162">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-432316162.jpg" alt="Snapchat-432316162" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-432316162.jpg" alt="Snapchat-432316162" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Snapchat-1061100202.jpg" data-alt="Snapchat-1061100202">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1061100202.jpg" alt="Snapchat-1061100202" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1061100202.jpg" alt="Snapchat-1061100202" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Snapchat-1994609448.jpg" data-alt="Snapchat-1994609448">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1994609448.jpg" alt="Snapchat-1994609448" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1994609448.jpg" alt="Snapchat-1994609448" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Snapchat-778282584.jpg" data-alt="Snapchat-778282584">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-778282584.jpg" alt="Snapchat-778282584" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-778282584.jpg" alt="Snapchat-778282584" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Snapchat-1019783900.jpg" data-alt="Snapchat-1019783900">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1019783900.jpg" alt="Snapchat-1019783900" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1019783900.jpg" alt="Snapchat-1019783900" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Snapchat-344543242.jpg" data-alt="Snapchat-344543242">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344543242.jpg" alt="Snapchat-344543242" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344543242.jpg" alt="Snapchat-344543242" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="07/11/2025" data-type="image" data-src="images/Snapchat-1445988979.jpg" data-alt="Snapchat-1445988979">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1445988979.jpg" alt="Snapchat-1445988979" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1445988979.jpg" alt="Snapchat-1445988979" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">07/11/2025</div>
         </div>
 
-        <div class="photo" data-date="07/11/2025" data-type="image" data-src="images/Snapchat-1901899807.jpg" data-alt="Snapchat-1901899807">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1901899807.jpg" alt="Snapchat-1901899807" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1901899807.jpg" alt="Snapchat-1901899807" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">07/11/2025</div>
         </div>
 
-        <div class="photo" data-date="07/11/2025" data-type="image" data-src="images/Snapchat-1401782366.jpg" data-alt="Snapchat-1401782366">
-          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1401782366.jpg" alt="Snapchat-1401782366" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1401782366.jpg" alt="Snapchat-1401782366" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">07/11/2025</div>
         </div>
 
-        <div class="photo" data-date="04/11/2025" data-type="image" data-src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" data-alt="Screenshot 2025-11-04">
-          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">04/11/2025</div>
         </div>
 
-        <div class="photo" data-date="09/11/2025" data-type="image" data-src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" data-alt="Screenshot 2025-11-09">
-          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">09/11/2025</div>
         </div>
 
-        <div class="photo" data-date="20/11/2025" data-type="image" data-src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" data-alt="Screenshot 2025-11-20">
-          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)"></div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
           <div class="caption">20/11/2025</div>
         </div>
 
-                <div class="photo" data-date="20/11/2025" data-type="video" data-src="video/WhatsApp Video 2025-11-21 at 06.44.38.mp4">
+                <div class="photo">
           <div class="media-wrapper">
-            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc || this.querySelector('source')?.src,'video')">
               <source src="video/WhatsApp Video 2025-11-21 at 06.44.38.mp4" type="video/mp4">
             </video>
           </div>
           <div class="caption">20/11/2025</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="video" data-src="video/WhatsApp Video 2025-11-21 at 06.44.40.mp4">
+        <div class="photo">
           <div class="media-wrapper">
-            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc || this.querySelector('source')?.src,'video')">
               <source src="video/WhatsApp Video 2025-11-21 at 06.44.40.mp4" type="video/mp4">
             </video>
           </div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="15/11/2025" data-type="video" data-src="video/WhatsApp Video 2025-11-21 at 06.45.23.mp4">
+        <div class="photo">
           <div class="media-wrapper">
-            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc || this.querySelector('source')?.src,'video')">
               <source src="video/WhatsApp Video 2025-11-21 at 06.45.23.mp4" type="video/mp4">
             </video>
           </div>
           <div class="caption">15/11/2025</div>
         </div>
 
-        <div class="photo" data-date="25/11/2025" data-type="video" data-src="video/WhatsApp Video 2025-11-21 at 06.45.23 .mp4">
+        <div class="photo">
           <div class="media-wrapper">
-            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc || this.querySelector('source')?.src,'video')">
               <source src="video/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" type="video/mp4">
             </video>
           </div>
@@ -396,8 +366,15 @@
     const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='#071827'/><text x='50%' y='50%' fill='#7b8ca3' font-size='20' text-anchor='middle' dominant-baseline='middle'>Image not available</text></svg>`;
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     img.onerror = null;
-    // Ensure the parent card still gets the loaded class even if image fails
     const card = img.closest('.photo');
+    if(card) card.classList.add('loaded');
+  }
+  function showVideoPlaceholder(vid){
+    const box = document.createElement('div');
+    box.className = 'placeholder';
+    box.innerText = 'Video not available';
+    vid.parentNode.replaceChild(box, vid);
+    const card = box.closest('.photo');
     if(card) card.classList.add('loaded');
   }
 
@@ -437,6 +414,30 @@
   // close on ESC
   window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePopup(); });
 
+  // wire gallery fade-in & clicks
+  function wireGallery(){
+    document.querySelectorAll('.gallery .photo').forEach((card, idx)=>{
+      const wrapper = card.querySelector('.media-wrapper');
+      const img = card.querySelector('img');
+      const vid = card.querySelector('video');
+
+      // stagger reveal
+      setTimeout(()=>{ card.classList.add('loaded'); }, 80 + idx * 40);
+
+      if(img){
+        img.addEventListener('load', ()=> card.classList.add('loaded'));
+        if(img.complete) card.classList.add('loaded');
+        img.addEventListener('click', ()=> openPopup(img.src,'image'));
+      }
+      if(vid){
+        vid.addEventListener('loadedmetadata', ()=> card.classList.add('loaded'));
+        // on click: prefer data-src (uploaded file), else currentSrc or source.src
+        vid.addEventListener('click', (e)=>{ e.stopPropagation(); const s = vid.getAttribute('data-src') || vid.currentSrc || vid.querySelector('source')?.src; openPopup(s,'video'); });
+      }
+    });
+  }
+  wireGallery();
+
   // love card flip
   const loveCard = document.getElementById('loveCard');
   loveCard.addEventListener('click', ()=> toggleCard());
@@ -447,21 +448,32 @@
   const bg = document.getElementById('bgMusic'), 
       mbtn = document.getElementById('musicToggle'),
       mbtnContainer = document.getElementById('musicToggleContainer');
-  let playing = true; 
+  let playing = true; // Set to true since it starts playing after the initial click
 
+  // Function to start music and hide the intro popup
   function startSurprise(){
     const introPopup = document.getElementById('introPopup');
     introPopup.style.opacity = '0';
+    
+    // Hide after fade out
     setTimeout(()=>{ introPopup.style.display = 'none'; }, 500);
 
+    // Try to play music
     bg.play().catch((error)=>{ console.log('Music play failed:', error); });
     
+    // Show the pause/play button
     mbtnContainer.style.display = 'block';
+    
+    // Initial state is playing
     mbtn.innerText = 'Pause music';
     playing = true;
   }
+
+  // Attach click listener to the entire intro popup
   document.getElementById('introPopup').addEventListener('click', startSurprise);
 
+
+  // Toggle logic for the small floating button (Pause/Play)
   mbtn.addEventListener('click', ()=>{
     if(playing){ 
       bg.pause(); 
@@ -474,95 +486,6 @@
     }
   });
 
-
-  // 💖 SORTING LOGIC 💖
-  function parseDate(dateStr) {
-    // Handles 'Date unknown'
-    if (dateStr === 'Date unknown') {
-      return new Date(0); // Epoch date for sorting unknowns to the very beginning
-    }
-    // Parses DD/MM/YYYY format
-    const parts = dateStr.split('/');
-    if (parts.length === 3) {
-      // Date(year, monthIndex, day) - monthIndex is 0-based
-      return new Date(parts[2], parts[1] - 1, parts[0]);
-    }
-    return new Date(0); // Fallback for invalid formats
-  }
-
-  function sortGallery() {
-    const gallery = document.getElementById('gallery');
-    // Convert HTMLCollection to Array
-    const photos = Array.from(gallery.querySelectorAll('.photo'));
-
-    photos.sort((a, b) => {
-      // Get date strings from caption text
-      const dateAStr = a.querySelector('.caption').textContent.trim();
-      const dateBStr = b.querySelector('.caption').textContent.trim();
-
-      // Parse date strings into Date objects
-      const dateA = parseDate(dateAStr);
-      const dateB = parseDate(dateBStr);
-
-      // Compare the dates (oldest first)
-      return dateA - dateB;
-    });
-
-    // Clear existing gallery content
-    gallery.innerHTML = '';
-
-    // Append sorted photos back to the gallery
-    photos.forEach(photo => {
-      gallery.appendChild(photo);
-    });
-  }
-
-  // Initial function to wire up and display the sorted gallery
-  function wireGallery(){
-    // Sort the gallery media first
-    sortGallery(); 
-
-    // Now apply the fade-in and click handlers to the newly sorted elements
-    document.querySelectorAll('.gallery .photo').forEach((card, idx)=>{
-      const img = card.querySelector('img');
-      const vid = card.querySelector('video');
-
-      // stagger reveal
-      setTimeout(()=>{ card.classList.add('loaded'); }, 80 + idx * 40);
-
-      if(img){
-        img.addEventListener('load', ()=> card.classList.add('loaded'));
-        // Use the data-src for the popup if available, otherwise fall back to src
-        const imgSrc = card.getAttribute('data-src') || img.src;
-        img.addEventListener('click', ()=> openPopup(imgSrc, 'image'));
-
-        // Check if image is already loaded (for cached images)
-        if(img.complete) card.classList.add('loaded');
-      }
-      if(vid){
-        vid.addEventListener('loadedmetadata', ()=> card.classList.add('loaded'));
-        
-        // Determine the correct video source for the popup
-        const videoSrc = card.getAttribute('data-src') || vid.querySelector('source')?.src;
-
-        // Add click listener to the video element itself
-        vid.addEventListener('click', (e)=>{ 
-          e.stopPropagation(); 
-          openPopup(videoSrc,'video'); 
-        });
-
-        // Since the video is nested, also add a listener to the wrapper for reliability
-        card.querySelector('.media-wrapper').addEventListener('click', (e) => {
-            if (e.target === card.querySelector('.media-wrapper')) {
-                e.stopPropagation(); 
-                openPopup(videoSrc, 'video');
-            }
-        });
-      }
-    });
-  }
-  // Call the initialization function
-  wireGallery();
 
   // ensure wrappers marked loaded when video tag fails or loads quickly
   document.addEventListener('DOMContentLoaded', ()=> {
