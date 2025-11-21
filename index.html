@@ -404,12 +404,18 @@
   loveCard.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(); }});
   function toggleCard(){ loveCard.classList.toggle('flipped'); loveCard.setAttribute('aria-pressed', loveCard.classList.contains('flipped')?'true':'false'); }
 
-  // music toggle
-  const bg = document.getElementById('bgMusic'), mbtn = document.getElementById('musicToggle');
-  let playing = false;
-  mbtn.addEventListener('click', ()=>{
-    if(!playing){ bg.play().catch(()=>{}); mbtn.innerText='Pause music'; playing=true } else { bg.pause(); mbtn.innerText='Play music'; playing=false }
-  });
+ <!-- Popup -->
+<div id="musicPopup" class="popup">
+  <div class="popup-box">
+    <h2 class="popup-title">I have something for you</h2>
+    <button id="popupStart" class="popup-btn">Open</button>
+  </div>
+</div>
+
+<!-- Music + Toggle -->
+<audio id="bgMusic" src="yourmusic.mp3" loop></audio>
+<button id="musicToggle" class="music-toggle">Play music</button>
+
 
   // ensure wrappers marked loaded when video tag fails or loads quickly
   document.addEventListener('DOMContentLoaded', ()=> {
