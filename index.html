@@ -1,251 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Siddhavi &amp; You — A Little Website of Love</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f1724; /* deep navy */
-      --card:#0b1220;
-      --accent:#ff6b81; /* pinkish */
-      --muted:#94a3b8;
-      --glass: rgba(255,255,255,0.04);
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#071023);color:#e6eef8;min-height:100vh}
-    .container{max-width:960px;margin:40px auto;padding:24px}
-
-    header{display:flex;align-items:center;gap:16px}
-    .avatar{width:96px;height:96px;border-radius:18px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04)}
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    h1{margin:0;font-size:1.6rem}
-    p.lead{color:var(--muted);margin-top:6px}
-
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;margin-top:20px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-
-    .stats{display:flex;gap:14px;margin-top:12px}
-    .stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center}
-    .stat strong{display:block;font-size:1.2rem}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
-    .photo{position:relative;border-radius:10px;overflow:hidden;background:#072034}
-    .photo img{width:100%;height:160px;object-fit:cover;display:block}
-    .photo .caption{position:absolute;left:8px;bottom:8px;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));font-size:0.85rem}
-
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{background:linear-gradient(90deg,var(--accent),#ff8aa3);border:none;padding:10px 14px;border-radius:10px;color:#062034;font-weight:600;cursor:pointer}
-    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px}
-
-    footer{margin-top:24px;color:var(--muted);font-size:0.9rem;text-align:center}
-
-    /* lightbox */
-    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.75);display:flex;align-items:center;justify-content:center;padding:30px;z-index:60;visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
-    .lightbox.open{visibility:visible;opacity:1}
-    .lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 14px 40px rgba(2,6,23,0.8)}
-
-    /* responsive tweaks */
-    @media (max-width:560px){.avatar{width:72px;height:72px}.container{padding:14px;margin:20px}}
-
-    /* small helper for uploader preview */
-    input[type=file]{display:none}
-    label.uploader{display:inline-block;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.04);cursor:pointer}
-
-  </style>
+<meta charset="utf-8">
+<title>For Siddhavi</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <!--
-      INSTRUCTIONS:
-      - This is a single-file website. Save it as siddhavi-website.html and open in a browser.
-      - To add your own photos without changing code: click "Choose Photos" and pick files; they will appear in the gallery for this session.
-      - To permanently include images, put them next to this file and change the <img src> paths below (e.g. images/photo1.jpg).
-      - The site already uses your relationship start date: Oct 3, 2024 — it will calculate time together automatically.
-    -->
+<audio autoplay loop>
+  <source src="music.wav" type="audio/wav">
+</audio>
+<div class="gallery">
+<div class="photo"><img src="images/Snapchat-344609506.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-162159466.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/.trashed-1765354798-Snapchat-162159466.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/.trashed-1765354798-Snapchat-527620421.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/.trashed-1765635172-Snapchat-873593879.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/.trashed-1765354798-Snapchat-344609506.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-873593879.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-527620421.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-2142615637.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1175841972.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-75909800.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-432316162.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1061100202.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1994609448.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-778282584.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1019783900.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-344543242.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1445988979.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1901899807.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Snapchat-1401782366.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">2025-11-21</div></div>
+<div class="photo"><img src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg"><div class="caption">2025-11-21</div></div>
 
-    <header>
-      <div class="avatar" id="mainAvatar">
-        <!-- Replace the src below with your favourite photo file name, e.g. "images/siddhavi.jpg" -->
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%2308191b'/><text x='50%' y='50%' fill='%23fff' font-size='40' text-anchor='middle' dominant-baseline='middle'>Siddhavi</text></svg>" alt="Siddhavi">
-      </div>
-      <div>
-        <h1>For Siddhavi — with love 💖</h1>
-        <p class="lead">A little page to celebrate the good stuff. Built with lots of love.</p>
-        <div class="stats">
-          <div class="stat">
-            <span style="color:var(--muted);font-size:0.9rem">Days Together</span>
-            <strong id="days">—</strong>
-          </div>
-          <div class="stat">
-            <span style="color:var(--muted);font-size:0.9rem">Since</span>
-            <strong>Oct 3, 2024</strong>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="card">
-      <h2 style="margin:0 0 6px 0">Our gallery</h2>
-      <p style="margin:0;color:var(--muted);font-size:0.95rem">Drop in photos, or click "Choose Photos" to preview images from your computer. Tap any photo to see it larger.</p>
-
-      <div class="controls">
-        <label for="photoInput" class="uploader">Choose Photos</label>
-        <input id="photoInput" type="file" accept="image/*" multiple>
-
-        <button id="downloadBtn" class="btn">Download as ZIP</button>
-        <button id="shuffleBtn" class="ghost">Shuffle</button>
-      </div>
-
-      <div id="gallery" class="gallery" style="margin-top:14px">
-        <!-- Added all uploaded photos -->
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-344609506.jpg"><div class="caption">Snapchat-344609506</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-162159466.jpg"><div class="caption">Snapchat-162159466</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-873593879.jpg"><div class="caption">Snapchat-873593879</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-527620421.jpg"><div class="caption">Snapchat-527620421</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-2142615637.jpg"><div class="caption">Snapchat-2142615637</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1175841972.jpg"><div class="caption">Snapchat-1175841972</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-75909800.jpg"><div class="caption">Snapchat-75909800</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-432316162.jpg"><div class="caption">Snapchat-432316162</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1061100202.jpg"><div class="caption">Snapchat-1061100202</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1994609448.jpg"><div class="caption">Snapchat-1994609448</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-778282584.jpg"><div class="caption">Snapchat-778282584</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1019783900.jpg"><div class="caption">Snapchat-1019783900</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-344543242.jpg"><div class="caption">Snapchat-344543242</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1445988979.jpg"><div class="caption">Snapchat-1445988979</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1901899807.jpg"><div class="caption">Snapchat-1901899807</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Snapchat-1401782366.jpg"><div class="caption">Snapchat-1401782366</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">Screenshot 1</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">Screenshot 2</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg"><div class="caption">Screenshot 3</div></div>
-        <div class="photo"><img src="/mnt/data/systemclone_extracted/SystemClone/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg"><div class="caption">Screenshot 4</div></div>
-      </div></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 6px 0">A love note</h2>
-      <p style="color:var(--muted)">Write a short message for Siddhavi below — it will appear in big letters. This is perfect for a surprise or for printing as a small card.</p>
-      <textarea id="loveNote" rows="4" style="width:100%;margin-top:8px;border-radius:10px;padding:12px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit"></textarea>
-      <div style="margin-top:10px;display:flex;gap:8px;justify-content:flex-end">
-        <button id="applyNote" class="btn">Show Note</button>
-        <button id="clearNote" class="ghost">Clear</button>
-      </div>
-      <div id="noteDisplay" style="margin-top:12px;font-size:1.15rem;color:var(--accent);min-height:28px"></div>
-    </section>
-
-    <footer>
-      Crafted with joy • Open this file in your browser to use. Want me to customize this further? Upload photos here and tell me which ones to feature ❤️
-    </footer>
-  </div>
-
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src=""></div>
-
-  <script>
-    // relationship start date (user provided): 2024-10-03
-    const startDate = new Date('2024-10-03T00:00:00');
-
-    function daysTogether() {
-      const now = new Date();
-      const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-      return diff;
-    }
-    document.getElementById('days').innerText = daysTogether();
-
-    // gallery handling
-    const photoInput = document.getElementById('photoInput');
-    const gallery = document.getElementById('gallery');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-
-    photoInput.addEventListener('change', (e) => {
-      const files = Array.from(e.target.files);
-      files.forEach(file => {
-        if(!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const src = ev.target.result;
-          const div = document.createElement('div');
-          div.className = 'photo';
-          div.innerHTML = `<img src="${src}" alt="photo"><div class="caption">${escapeHtml(file.name)}</div>`;
-          gallery.prepend(div);
-          div.querySelector('img').addEventListener('click', () => openLightbox(src));
-        };
-        reader.readAsDataURL(file);
-      });
-      // clear value so same file can be re-selected if needed
-      photoInput.value = '';
-    });
-
-    function openLightbox(src){
-      lightboxImg.src = src;
-      lightbox.classList.add('open');
-    }
-    function closeLightbox(){
-      lightbox.classList.remove('open');
-    }
-
-    // simple shuffle
-    document.getElementById('shuffleBtn').addEventListener('click', () => {
-      const items = Array.from(gallery.children);
-      for(let i = items.length -1; i>0; i--){
-        const j = Math.floor(Math.random()*(i+1));
-        gallery.appendChild(items[j]);
-        items.splice(j,1);
-      }
-    });
-
-    // download as zip (client-side) - minimal fallback if JS Zip unavailable
-    document.getElementById('downloadBtn').addEventListener('click', async () => {
-      // gather data URLs for images in gallery
-      const imgs = Array.from(gallery.querySelectorAll('img'));
-      if(imgs.length === 0){ alert('No images to download. Add photos with "Choose Photos" first.'); return; }
-
-      // Use JSZip if available, otherwise offer to right-click/save each image
-      if(typeof JSZip !== 'undefined'){
-        const zip = new JSZip();
-        const folder = zip.folder('photos');
-        for(let i=0;i<imgs.length;i++){
-          const dataUrl = imgs[i].src;
-          const bin = dataURLtoBlob(dataUrl);
-          folder.file(`photo-${i+1}.png`, bin);
-        }
-        const content = await zip.generateAsync({type:'blob'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(content);
-        a.download = 'siddhavi-photos.zip';
-        a.click();
-      } else {
-        alert('JSZip is not bundled in this file. Right-click images and choose "Save image as..." to download. If you want, I can add ZIP download support.');
-      }
-    });
-
-    function dataURLtoBlob(dataurl) {
-      const arr = dataurl.split(',');
-      const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
-      let n = bstr.length;
-      const u8arr = new Uint8Array(n);
-      while(n--){ u8arr[n] = bstr.charCodeAt(n); }
-      return new Blob([u8arr], {type:mime});
-    }
-
-    // love note
-    document.getElementById('applyNote').addEventListener('click', () => {
-      const text = document.getElementById('loveNote').value.trim();
-      document.getElementById('noteDisplay').innerText = text ? text : '';
-    });
-    document.getElementById('clearNote').addEventListener('click', ()=>{
-      document.getElementById('loveNote').value = '';
-      document.getElementById('noteDisplay').innerText = '';
-    });
-
-    // helper
-    function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-    // wire initial placeholder image clicks if there are inline imgs
-    Array.from(document.querySelectorAll('.gallery img')).forEach(img => img.addEventListener('click', ()=>openLightbox(img.src)));
-  </script>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
-
