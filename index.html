@@ -32,27 +32,27 @@
 
     /* Gallery */
     .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
-    .photo{position:relative;border-radius:12px;overflow:hidden;background:#071b27;min-height:100px;transition:transform .18s,opacity .4s,filter .4s}
-    .photo:hover{transform:translateY(-6px)}
-    .photo img,.photo video{width:100%;height:160px;object-fit:cover;display:block;border:0;background:#061222}
-    .photo .caption{position:absolute;left:10px;bottom:10px;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.18));font-size:0.85rem}
+    .photo{position:relative;border-radius:12px;overflow:hidden;background:#071b27;min-height:100px}
+    .photo img,.photo video{width:100%;height:160px;object-fit:cover;display:block;border:0;background:#061222;cursor:pointer}
+    .caption{position:relative;margin-top:8px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:6px}
 
-    /* Fade-in + zoom effect */
-    .photo { opacity: 0; transform: translateY(8px) scale(0.99); filter: blur(6px); }
-    .photo.loaded { opacity:1; transform: translateY(0) scale(1); filter: blur(0); transition: transform .6s cubic-bezier(.2,.9,.25,1), opacity .6s ease, filter .6s ease; }
+    /* fade-in (staggered applied via JS) */
+    .photo .media-wrapper { opacity:0; transform:translateY(8px) scale(0.99); filter:blur(6px); transition: transform .6s cubic-bezier(.2,.9,.25,1), opacity .6s ease, filter .6s ease;}
+    .photo.loaded .media-wrapper { opacity:1; transform:none; filter:blur(0); }
 
-    /* Controls area (removed upload & shuffle per request) */
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent),#ff8aa3);border:none;padding:10px 14px;border-radius:10px;color:#062034;font-weight:700;cursor:pointer}
-    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px}
+    /* hover zoom (no + icon) */
+    .photo .media-wrapper img:hover,
+    .photo .media-wrapper video:hover { transform: scale(1.08); transition: transform .36s ease; }
 
-    footer{margin-top:22px;color:var(--muted);font-size:0.95rem;text-align:center}
+    /* remove default drag cursor */
+    .photo img, .photo video { -webkit-user-drag: none; user-select: none; }
 
-    /* Lightbox */
-    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.82);display:flex;align-items:center;justify-content:center;padding:20px;z-index:140;visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
-    .lightbox.open{visibility:visible;opacity:1}
-    .lightbox-inner{max-width:94vw;max-height:92vh;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .lightbox img,.lightbox video{max-width:100%;max-height:100%;display:block;border-radius:8px}
+    /* Popup */
+    .popup{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.92);align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .popup.open{display:flex}
+    .popup-content{max-width:92vw;max-height:92vh;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .popup img,.popup video{max-width:100%;max-height:100%;border-radius:8px;display:block}
+    .popup-close{position:fixed;top:20px;right:26px;color:#fff;font-size:34px;cursor:pointer;z-index:10001}
 
     /* Love card flip */
     .love-card { width:100%; height:220px; perspective:1000px; margin-top:18px; }
@@ -62,10 +62,7 @@
     .love-card-front { background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); color:var(--muted); font-weight:600; }
     .love-card-back { transform:rotateY(180deg); background:linear-gradient(135deg, rgba(255,107,129,0.06), rgba(255,138,163,0.03)); color: #fff; font-size:1.05rem; line-height:1.45; box-shadow: 0 8px 30px rgba(255,107,129,0.04) }
 
-    .heart-icon {
-      width:72px;height:72px;border-radius:20px; display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff8aa3,#ff6b81); box-shadow:0 12px 30px rgba(255,107,129,0.12); transform:translateY(-6px);
-    }
-    .heart-icon svg{width:42px;height:42px;display:block;filter:drop-shadow(0 6px 18px rgba(255,107,129,0.12))}
+    .heart-icon { width:72px;height:72px;border-radius:20px; display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff8aa3,#ff6b81); box-shadow:0 12px 30px rgba(255,107,129,0.12); transform:translateY(-6px); }
 
     /* Floating hearts */
     .hearts { pointer-events:none; position:fixed; inset:0; z-index:0; overflow:hidden }
@@ -108,171 +105,151 @@
       </div>
     </header>
 
-    <section class="card">
+    <section class="card" aria-label="Gallery">
       <h2 style="margin:0 0 6px 0">Our gallery</h2>
-      <p style="margin:0;color:var(--muted);font-size:0.95rem">Our Relationship is not just a relationship, it's a forever promise we made to each other. Here are a few of the best moments.</p>
-
-      <!-- Controls removed as requested (no upload, no shuffle) -->
-      <div class="controls" style="display:none"></div>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem">Tap any photo or video to view it larger. Dates are shown under each item.</p>
 
       <div id="gallery" class="gallery">
 
-    <!-- IMAGES -->
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-344609506.jpg" 
-             alt="Snapchat-344609506" onerror="showPlaceholder(this)">
-        <div class="caption">09/11/2025</div>
-    </div>
+        <!-- IMAGES -->
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344609506.jpg" alt="Snapchat-344609506" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">09/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-162159466.jpg" 
-             alt="Snapchat-162159466" onerror="showPlaceholder(this)">
-        <div class="caption">09/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-162159466.jpg" alt="Snapchat-162159466" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">09/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-873593879.jpg" 
-             alt="Snapchat-873593879" onerror="showPlaceholder(this)">
-        <div class="caption">09/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-873593879.jpg" alt="Snapchat-873593879" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">09/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-527620421.jpg" 
-             alt="Snapchat-527620421" onerror="showPlaceholder(this)">
-        <div class="caption">09/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-527620421.jpg" alt="Snapchat-527620421" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">09/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-2142615637.jpg" 
-             alt="Snapchat-2142615637" onerror="showPlaceholder(this)">
-        <div class="caption">Date unknown</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-2142615637.jpg" alt="Snapchat-2142615637" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">Date unknown</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1175841972.jpg" 
-             alt="Snapchat-1175841972" onerror="showPlaceholder(this)">
-        <div class="caption">15/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1175841972.jpg" alt="Snapchat-1175841972" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">15/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" 
-             alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)">
-        <div class="caption">15/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-15" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">15/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-75909800.jpg" 
-             alt="Snapchat-75909800" onerror="showPlaceholder(this)">
-        <div class="caption">15/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-75909800.jpg" alt="Snapchat-75909800" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">15/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-432316162.jpg" 
-             alt="Snapchat-432316162" onerror="showPlaceholder(this)">
-        <div class="caption">15/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-432316162.jpg" alt="Snapchat-432316162" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">15/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1061100202.jpg" 
-             alt="Snapchat-1061100202" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1061100202.jpg" alt="Snapchat-1061100202" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1994609448.jpg" 
-             alt="Snapchat-1994609448" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1994609448.jpg" alt="Snapchat-1994609448" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-778282584.jpg" 
-             alt="Snapchat-778282584" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-778282584.jpg" alt="Snapchat-778282584" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1019783900.jpg" 
-             alt="Snapchat-1019783900" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1019783900.jpg" alt="Snapchat-1019783900" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-344543242.jpg" 
-             alt="Snapchat-344543242" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-344543242.jpg" alt="Snapchat-344543242" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1445988979.jpg" 
-             alt="Snapchat-1445988979" onerror="showPlaceholder(this)">
-        <div class="caption">07/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1445988979.jpg" alt="Snapchat-1445988979" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">07/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1901899807.jpg" 
-             alt="Snapchat-1901899807" onerror="showPlaceholder(this)">
-        <div class="caption">07/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1901899807.jpg" alt="Snapchat-1901899807" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">07/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Snapchat-1401782366.jpg" 
-             alt="Snapchat-1401782366" onerror="showPlaceholder(this)">
-        <div class="caption">07/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Snapchat-1401782366.jpg" alt="Snapchat-1401782366" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">07/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" 
-             alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)">
-        <div class="caption">04/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-04" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">04/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" 
-             alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)">
-        <div class="caption">09/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt="Screenshot 2025-11-09" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">09/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" 
-             alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)">
-        <div class="caption">20/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper"><img loading="lazy" src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt="Screenshot 2025-11-20" onerror="showPlaceholder(this)" onclick="openPopup(this.src,'image')"></div>
+          <div class="caption">20/11/2025</div>
+        </div>
 
-    <!-- VIDEOS -->
-    <div class="photo">
-        <video loading="lazy" controls preload="metadata" playsinline 
-               onerror="showVideoPlaceholder(this)">
-            <source src="video/WhatsApp Video 2025-11-21 at 06.44.38.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-    </div>
+        <!-- VIDEOS (using exact filenames you uploaded) -->
+        <div class="photo">
+          <div class="media-wrapper">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc,'video')">
+              <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.38.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="caption">21/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <video loading="lazy" controls preload="metadata" playsinline 
-               onerror="showVideoPlaceholder(this)">
-            <source src="video/WhatsApp Video 2025-11-21 at 06.44.40.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc,'video')">
+              <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.44.40.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="caption">21/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <video loading="lazy" controls preload="metadata" playsinline 
-               onerror="showVideoPlaceholder(this)">
-            <source src="video/WhatsApp Video 2025-11-21 at 06.45.23.mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc,'video')">
+              <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="caption">21/11/2025</div>
+        </div>
 
-    <div class="photo">
-        <video loading="lazy" controls preload="metadata" playsinline 
-               onerror="showVideoPlaceholder(this)">
-            <source src="video/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" type="video/mp4">
-        </video>
-        <div class="caption">21/11/2025 (filename has trailing space)</div>
-    </div>
+        <div class="photo">
+          <div class="media-wrapper">
+            <video loading="lazy" controls playsinline data-src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" onclick="openPopup(this.getAttribute('data-src') || this.currentSrc,'video')">
+              <source src="/mnt/data/WhatsApp Video 2025-11-21 at 06.45.23 .mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="caption">21/11/2025 (filename has trailing space)</div>
+        </div>
 
-</div>
-
+      </div>
     </section>
 
     <!-- Interactive Love Note Card (front = heart + "For My Shone", back = message) -->
@@ -303,19 +280,19 @@
       </div>
     </section>
 
-    <footer>
-      I hope we really get married and live happily.
-    </footer>
+    <footer style="margin-top:18px;color:var(--muted);text-align:center">I hope we really get married and live happily.</footer>
   </div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-inner" onclick="event.stopPropagation()">
-      <div id="lightboxContent"></div>
+  <!-- Popup (image & video) -->
+  <div id="popup" class="popup" onclick="closePopup()">
+    <div class="popup-close" onclick="closePopup()">✕</div>
+    <div class="popup-content" onclick="event.stopPropagation()">
+      <img id="popupImg" alt="" style="display:none">
+      <video id="popupVideo" controls style="display:none"></video>
     </div>
   </div>
 
-  <!-- Background music: place music.mp3 (or music.wav) next to this HTML -->
+  <!-- background music -->
   <audio id="bgMusic" loop preload="none">
     <source src="music.mp3" type="audio/mpeg">
     <source src="music.wav" type="audio/wav">
@@ -329,110 +306,114 @@
   const startDate = new Date('2024-10-03T00:00:00');
   document.getElementById('days').innerText = Math.floor((new Date() - startDate)/(1000*60*60*24));
 
-  // HEARTS generation (floating hearts background)
+  // floating hearts
   const heartsContainer = document.querySelector('.hearts');
   const heartCount = 14;
   for(let i=0;i<heartCount;i++){
-    const h = document.createElement('div');
-    h.className = 'heart';
-    const size = 12 + Math.random()*28;
-    h.style.width = size+'px';
-    h.style.height = size+'px';
-    h.style.left = (Math.random()*90) + 'vw';
-    h.style.animationDuration = (5 + Math.random()*5) + 's';
-    h.style.opacity = 0.8 + Math.random()*0.2;
-    h.style.transform = 'translateY(100vh) rotate(' + (Math.random()*60-30) + 'deg)';
-    heartsContainer.appendChild(h);
+    const h = document.createElement('div'); h.className='heart';
+    const size = 12 + Math.random()*28; h.style.width = size+'px'; h.style.height = size+'px';
+    h.style.left = (Math.random()*90) + 'vw'; h.style.animationDuration = (5 + Math.random()*5) + 's';
+    h.style.opacity = 0.7 + Math.random()*0.3; h.style.transform = 'translateY(100vh) rotate('+(Math.random()*60-30)+'deg)';
     h.style.animationDelay = (Math.random()*-6)+'s';
+    heartsContainer.appendChild(h);
   }
 
-  // PLACEHOLDER & AVATAR fallback
-  function showPlaceholder(imgEl){
-    const p = document.createElement('div');
-    p.className = 'placeholder';
-    p.innerText = imgEl.getAttribute('alt') + ' — image not found';
-    imgEl.parentNode.replaceChild(p, imgEl);
-  }
-  function avatarFallback(img){
+  // placeholder fallback (inline SVG) so no external file needed
+  function showPlaceholder(img){
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='#071827'/><text x='50%' y='50%' fill='#7b8ca3' font-size='20' text-anchor='middle' dominant-baseline='middle'>Image not available</text></svg>`;
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     img.onerror = null;
-    img.src = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="100%" height="100%" fill="#08131a"/><text x="50%" y="50%" fill="#fff" font-size="36" text-anchor="middle" dominant-baseline="middle">Siddhavi</text></svg>');
+    // mark as loaded so the wrapper reveals
+    const card = img.closest('.photo');
+    if(card) card.classList.add('loaded');
+  }
+  function showVideoPlaceholder(vid){
+    const box = document.createElement('div');
+    box.className = 'placeholder';
+    box.innerText = 'Video not available';
+    vid.parentNode.replaceChild(box, vid);
+    const card = box.closest('.photo');
+    if(card) card.classList.add('loaded');
   }
 
-  // LIGHTBOX: open image or video
-  const lightbox = document.getElementById('lightbox');
-  const lightboxContent = document.getElementById('lightboxContent');
+  function avatarFallback(img){ img.onerror=null; img.src = 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="100%" height="100%" fill="#08131a"/><text x="50%" y="50%" fill="#fff" font-size="36" text-anchor="middle" dominant-baseline="middle">Siddhavi</text></svg>'); }
 
-  function openLightbox(type, src){
-    lightboxContent.innerHTML = '';
+  // popup open/close
+  const popup = document.getElementById('popup');
+  const popupImg = document.getElementById('popupImg');
+  const popupVideo = document.getElementById('popupVideo');
+
+  function openPopup(src, type){
+    popup.classList.add('open');
+    popup.style.display = 'flex';
     if(type === 'image'){
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = '';
-      lightboxContent.appendChild(img);
-    } else if(type === 'video'){
-      const v = document.createElement('video');
-      v.controls = true; v.autoplay = true; v.playsInline = true;
-      v.src = src;
-      v.style.maxWidth = '100%';
-      lightboxContent.appendChild(v);
+      popupVideo.pause();
+      popupVideo.style.display = 'none';
+      popupVideo.src = '';
+      popupImg.src = src;
+      popupImg.style.display = 'block';
+    } else {
+      popupImg.style.display = 'none';
+      popupImg.src = '';
+      popupVideo.src = src;
+      popupVideo.style.display = 'block';
+      popupVideo.play().catch(()=>{});
     }
-    lightbox.classList.add('open');
+    // reveal visible class for any items not yet shown
+    document.querySelectorAll('.photo').forEach((card)=>{ card.classList.add('loaded'); });
   }
-  function closeLightbox(){
-    const vid = lightboxContent.querySelector('video');
-    if(vid && !vid.paused) vid.pause();
-    lightbox.classList.remove('open');
-    lightboxContent.innerHTML = '';
+  function closePopup(){
+    popup.classList.remove('open');
+    popup.style.display = 'none';
+    if(!popupVideo.paused) popupVideo.pause();
+    popupVideo.src = '';
+    popupImg.src = '';
   }
+  // close on ESC
+  window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePopup(); });
 
-  // Wire gallery clicks (images and videos) and apply fade-in loaded class
-  function wireGalleryClicks(){
-    document.querySelectorAll('.gallery .photo').forEach(card => {
+  // wire gallery fade-in & clicks
+  function wireGallery(){
+    document.querySelectorAll('.gallery .photo').forEach((card, idx)=>{
+      const wrapper = card.querySelector('.media-wrapper');
       const img = card.querySelector('img');
       const vid = card.querySelector('video');
 
-      // fade-in: mark loaded when image/video metadata loads
+      // stagger reveal
+      setTimeout(()=>{ card.classList.add('loaded'); }, 80 + idx * 40);
+
       if(img){
         img.addEventListener('load', ()=> card.classList.add('loaded'));
-        // in case already cached
         if(img.complete) card.classList.add('loaded');
-
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', ()=> openLightbox('image', img.src));
-      } else if(vid){
-        // mark loaded when metadata available
+        img.addEventListener('click', ()=> openPopup(img.src,'image'));
+      }
+      if(vid){
         vid.addEventListener('loadedmetadata', ()=> card.classList.add('loaded'));
-        vid.style.cursor = 'pointer';
-        const src = vid.getAttribute('data-src') || vid.querySelector('source')?.src || vid.src;
-        vid.addEventListener('click', ()=> openLightbox('video', src));
+        vid.addEventListener('click', (e)=>{ e.stopPropagation(); const s = vid.getAttribute('data-src') || vid.currentSrc || vid.src; openPopup(s,'video'); });
       }
     });
   }
-  wireGalleryClicks();
+  wireGallery();
 
-  // LOVE CARD flip + keyboard
+  // love card flip
   const loveCard = document.getElementById('loveCard');
   loveCard.addEventListener('click', ()=> toggleCard());
   loveCard.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(); }});
-  function toggleCard(){
-    loveCard.classList.toggle('flipped');
-    const pressed = loveCard.classList.contains('flipped');
-    loveCard.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-  }
+  function toggleCard(){ loveCard.classList.toggle('flipped'); loveCard.setAttribute('aria-pressed', loveCard.classList.contains('flipped')?'true':'false'); }
 
-  // Music toggle
+  // music toggle
   const bg = document.getElementById('bgMusic'), mbtn = document.getElementById('musicToggle');
   let playing = false;
   mbtn.addEventListener('click', ()=>{
-    if(!playing){ bg.play().catch(()=>{}); mbtn.innerText='Pause music'; playing=true }
-    else { bg.pause(); mbtn.innerText='Play music'; playing=false }
+    if(!playing){ bg.play().catch(()=>{}); mbtn.innerText='Pause music'; playing=true } else { bg.pause(); mbtn.innerText='Play music'; playing=false }
   });
 
-  // HTML escape helper
-  function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-  // Ensure gallery wiring after load
-  window.addEventListener('load', wireGalleryClicks);
+  // ensure wrappers marked loaded when video tag fails or loads quickly
+  document.addEventListener('DOMContentLoaded', ()=> {
+    document.querySelectorAll('.photo video').forEach(v=>{
+      v.addEventListener('error', ()=> { const c = v.closest('.photo'); if(c) c.classList.add('loaded'); });
+    });
+  });
 </script>
 </body>
 </html>
