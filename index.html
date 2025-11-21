@@ -1,134 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Siddhavi & You — Memories</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0f1724; --card:#0b1220; --accent:#ff6b81; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
-  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
-}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,var(--bg),#071023);color:#e6eef8;min-height:100vh}
-.container{max-width:960px;margin:40px auto;padding:24px}
-header{display:flex;align-items:center;gap:16px}
-.avatar{width:96px;height:96px;border-radius:18px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04)}
-.avatar img{width:100%;height:100%;object-fit:cover}
-h1{margin:0;font-size:1.6rem}
-p.lead{color:var(--muted);margin-top:6px}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;margin-top:20px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-.stats{display:flex;gap:14px;margin-top:12px}
-.stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center}
-.stat strong{display:block;font-size:1.2rem}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
-.photo{position:relative;border-radius:10px;overflow:hidden;background:#072034;cursor:pointer}
-.photo img, .photo video{width:100%;height:160px;object-fit:cover;display:block}
-.photo .caption{position:absolute;left:8px;bottom:8px;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));font-size:0.85rem}
-.photo .play-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:2rem;pointer-events:none;}
-footer{margin-top:24px;color:var(--muted);font-size:0.9rem;text-align:center}
-.lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.75);display:flex;align-items:center;justify-content:center;padding:30px;z-index:60;visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
-.lightbox.open{visibility:visible;opacity:1}
-.lightbox img, .lightbox video{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 14px 40px rgba(2,6,23,0.8)}
-@media (max-width:560px){.avatar{width:72px;height:72px}.container{padding:14px;margin:20px}}
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #fff0f5;
+        color: #333;
+        text-align: center;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-family: 'Pacifico', cursive;
+        color: #ff69b4;
+        margin: 20px 0;
+    }
+
+    .counter {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .gallery-item {
+        width: 250px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        background: #fff;
+    }
+
+    .gallery-item img, .gallery-item video {
+        width: 100%;
+        display: block;
+    }
+
+    .caption {
+        background: rgba(255, 105, 180, 0.8);
+        color: white;
+        padding: 5px 10px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+        position: fixed;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .lightbox img, .lightbox video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .close {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Hearts animation */
+    .heart {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: url('https://i.ibb.co/tL9HZTt/heart.png') no-repeat center center;
+        background-size: contain;
+        pointer-events: none;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0.8;}
+        100% { transform: translateY(-10vh) scale(1); opacity: 0;}
+    }
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-  <div class="avatar"><img src="images/Snapchat-344609506.jpg" alt="Siddhavi"></div>
-  <div>
-    <h1>For Siddhavi — with love 💖</h1>
-    <p class="lead">A little page to celebrate our memories.</p>
-    <div class="stats">
-      <div class="stat"><span style="color:var(--muted);font-size:0.9rem">Days Together</span><strong id="days">—</strong></div>
-      <div class="stat"><span style="color:var(--muted);font-size:0.9rem">Since</span><strong>Oct 3, 2024</strong></div>
+
+<h1>Our Memories ❤️</h1>
+<div class="counter" id="daysTogether"></div>
+
+<div class="gallery" id="gallery">
+    <!-- Example Photos/Videos with captions in ascending order -->
+    <div class="gallery-item" data-type="photo" data-src="images/photo1.jpg">
+        <img src="images/photo1.jpg" alt="First shopping">
+        <div class="caption">4/11 - First shopping together 🛍️❤️</div>
     </div>
-  </div>
-</header>
-
-<section class="card">
-  <h2>Our gallery</h2>
-  <div class="gallery" id="gallery">
-    <!-- Sorted by ascending date -->
-    <!-- 4/11/2025 -->
-    <div class="photo"><img src="images/Snapchat-1061100202.jpg" alt=""><div class="caption">4/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-1994609448.jpg" alt=""><div class="caption">4/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-778282584.jpg" alt=""><div class="caption">4/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-1019783900.jpg" alt=""><div class="caption">4/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-344543242.jpg" alt=""><div class="caption">4/11/2025</div></div>
-    <div class="photo"><img src="images/Screenshot_2025-11-04-20-15-48-17_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt=""><div class="caption">4/11/2025</div></div>
-
-    <!-- 7/11/2025 -->
-    <div class="photo"><img src="images/Snapchat-1445988979.jpg" alt=""><div class="caption">7/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-1901899807.jpg" alt=""><div class="caption">7/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-1401782366.jpg" alt=""><div class="caption">7/11/2025</div></div>
-
-    <!-- 9/11/2025 -->
-    <div class="photo"><img src="images/Snapchat-344609506.jpg" alt=""><div class="caption">9/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-162159466.jpg" alt=""><div class="caption">9/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-873593879.jpg" alt=""><div class="caption">9/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-527620421.jpg" alt=""><div class="caption">9/11/2025</div></div>
-    <div class="photo"><img src="images/Screenshot_2025-11-09-04-58-32-87_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt=""><div class="caption">9/11/2025</div></div>
-    <!-- Video -->
-    <div class="photo" data-type="video"><video src="videos/VID_20251109_133312.mp4"></video><div class="caption">9/11/2025</div><div class="play-overlay">▶</div></div>
-
-    <!-- 15/11/2025 -->
-    <div class="photo"><img src="images/Snapchat-1175841972.jpg" alt=""><div class="caption">15/11/2025</div></div>
-    <div class="photo"><img src="images/Screenshot_2025-11-15-12-28-39-30_a63b0f8076346d26cbdc1b971a1da2a7.jpg" alt=""><div class="caption">15/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-75909800.jpg" alt=""><div class="caption">15/11/2025</div></div>
-    <div class="photo"><img src="images/Snapchat-432316162.jpg" alt=""><div class="caption">15/11/2025</div></div>
-
-    <!-- 19/11/2025 -->
-    <div class="photo" data-type="video"><video src="videos/VID_20251119_094126.mp4"></video><div class="caption">19/11/2025</div><div class="play-overlay">▶</div></div>
-
-    <!-- 20/11/2025 -->
-    <div class="photo"><img src="images/Screenshot_2025-11-20-06-02-30-92_92460851df6f172a4592fca41cc2d2e6.jpg" alt=""><div class="caption">20/11/2025</div></div>
-  </div>
-</section>
-
-<footer>Crafted with ❤️ just for Siddhavi.</footer>
+    <div class="gallery-item" data-type="photo" data-src="images/photo2.jpg">
+        <img src="images/photo2.jpg" alt="Forehead kiss">
+        <div class="caption">9/11 - First forehead kiss 😘</div>
+    </div>
+    <!-- Add your videos here -->
+    <div class="gallery-item" data-type="video" data-src="videos/video1.mp4">
+        <video src="videos/video1.mp4" muted></video>
+        <div class="caption">Video memory 1</div>
+    </div>
+    <div class="gallery-item" data-type="video" data-src="videos/video2.mp4">
+        <video src="videos/video2.mp4" muted></video>
+        <div class="caption">Video memory 2</div>
+    </div>
 </div>
 
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <img id="lightboxImg" src="">
-  <video id="lightboxVideo" controls></video>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightboxContent">
+        <button class="close" id="closeBtn">&times;</button>
+    </div>
 </div>
 
-<audio id="bgMusic" src="media/romantic_music.mp3" autoplay loop></audio>
+<!-- Background music -->
+<audio autoplay loop>
+    <source src="music/song.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-// Days together
-const startDate = new Date('2024-10-03T00:00:00');
-document.getElementById('days').innerText = Math.floor((new Date() - startDate)/(1000*60*60*24));
+    // Days together counter
+    const startDate = new Date('2025-04-11'); // First shopping
+    const today = new Date();
+    const diffTime = Math.abs(today - startDate);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('daysTogether').innerText = `Days together: ${diffDays}`;
 
-// Lightbox
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxVideo = document.getElementById('lightboxVideo');
+    // Lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const closeBtn = document.getElementById('closeBtn');
 
-document.querySelectorAll('.photo').forEach(el=>{
-  el.addEventListener('click', e=>{
-    if(el.dataset.type==='video'){
-      lightboxImg.style.display='none';
-      lightboxVideo.style.display='block';
-      lightboxVideo.src = el.querySelector('video').src;
-      lightboxVideo.play();
-    } else {
-      lightboxVideo.style.display='none';
-      lightboxVideo.pause();
-      lightboxImg.style.display='block';
-      lightboxImg.src = el.querySelector('img').src;
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const type = item.dataset.type;
+            const src = item.dataset.src;
+            lightboxContent.innerHTML = `<button class="close" id="closeBtn">&times;</button>`;
+            if(type === 'photo'){
+                const img = document.createElement('img');
+                img.src = src;
+                lightboxContent.appendChild(img);
+            } else if(type === 'video'){
+                const video = document.createElement('video');
+                video.src = src;
+                video.controls = true;
+                video.autoplay = true;
+                lightboxContent.appendChild(video);
+            }
+            lightbox.style.display = 'flex';
+            document.getElementById('closeBtn').addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+        });
+    });
+
+    // Floating hearts effect
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
     }
-    lightbox.classList.add('open');
-  });
-});
-
-function closeLightbox(){
-  lightbox.classList.remove('open');
-  lightboxVideo.pause();
-}
+    setInterval(createHeart, 500);
 </script>
+
 </body>
 </html>
