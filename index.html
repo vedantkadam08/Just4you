@@ -1,102 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For My Love, Siddhavi ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .container {
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255,255,255,0.8);
-            animation: glow 2s infinite alternate;
-        }
-
-        p {
-            font-size: 1.4rem;
-            width: 80%;
-            margin: 0 auto;
-            opacity: 0.9;
-            animation: fadeInUp 3s;
-        }
-
-        .heart {
-            font-size: 4rem;
-            margin-top: 20px;
-            animation: heartbeat 1.5s infinite ease-in-out;
-        }
-
-        /* Photo Styling */
-        .photo-frame {
-            margin-top: 25px;
-            width: 260px;
-            height: 260px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(255,255,255,0.7);
-            animation: fadeInUp 2.5s;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #fff; }
-            to { text-shadow: 0 0 25px #ffe6e6; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Gallery for Siddhavi</title>
+  <style>
+    body {
+      background: #f9f0f5;
+      font-family: sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .img-box {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .img-box img:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>For My Love, Siddhavi ❤️</h1>
-        <p>
-            Every moment with you feels magical.  
-            You make my world brighter, my heart softer,  
-            and my life so much more beautiful.  
-        </p>
-
-        <!-- PHOTO GOES HERE -->
-        <div class="photo-frame">
-            <img src="YOUR_IMAGE_HERE.jpg" alt="Siddhavi">
-        </div>
-
-        <div class="heart">💖</div>
-    </div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img1.jpg" alt="Image 1"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img2.jpg" alt="Image 2"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img3.jpg" alt="Image 3"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img4.jpg" alt="Image 4"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img5.jpg" alt="Image 5"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img6.jpg" alt="Image 6"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img7.jpg" alt="Image 7"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img8.jpg" alt="Image 8"></div>
+  <div class="img-box"><img src="https://raw.githubusercontent.com/vedantkadam08/Happy-Birthday-Sonu/main/image/img9.jpg" alt="Image 9"></div>
 </body>
 </html>
