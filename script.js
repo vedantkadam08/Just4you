@@ -1,13 +1,16 @@
 // No special JS needed yet.
-function openPreview(src) {
-    document.getElementById("previewImg").src = src;
-    document.getElementById("imgPreview").style.display = "flex";
+function showPlaceholder(el) {
+    el.src = "images/placeholder.jpg";
 }
 
-function closePreview() {
-    document.getElementById("imgPreview").style.display = "none";
+function openLightbox(src) {
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    img.src = src;
+    lb.classList.add("show");
 }
 
-function showPlaceholder(img) {
-    img.src = "images/placeholder.jpg";
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("show");
 }
+
