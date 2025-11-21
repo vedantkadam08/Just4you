@@ -38,3 +38,36 @@ popup.addEventListener("click", e => {
     popupVideo.pause();
   }
 });
+// elements
+const bg = document.getElementById('bgMusic');
+const mbtn = document.getElementById('musicToggle');
+const popup = document.getElementById('musicPopup');
+const popupStart = document.getElementById('popupStart');
+
+let playing = false;
+
+// Popup start button
+popupStart.addEventListener('click', () => {
+  popup.classList.add('hidden');  // hide popup
+
+  bg.play().then(() => {
+    playing = true;
+    mbtn.innerText = "Pause music";
+  }).catch(() => {
+    // autoplay blocked but popup counts as user gesture, so it shouldn't fail
+  });
+});
+
+// Music toggle button
+mbtn.addEventListener('click', () => {
+  if (!playing) {
+    bg.play().catch(()=>{});
+    mbtn.innerText = 'Pause music';
+    playing = true;
+  } else {
+    bg.pause();
+    mbtn.innerText = 'Play music';
+    playing = false;
+  }
+});
+
