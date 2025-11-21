@@ -39,37 +39,45 @@ popup.addEventListener("click", e => {
   }
 });
 
-<style>
-  /* Base style for the popup */
-  #introPopup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    cursor: pointer;
-    z-index: 1000; /* Make sure it's on top of everything */
-    transition: transform 1.5s ease-out, opacity 1.5s ease-out; /* For the fade-out effect */
-    user-select: none; /* Prevent text selection */
-  }
 
-  /* Style for the text inside */
-  #introPopup p {
-    text-align: center;
-    padding: 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-  }
+<script>
+  // Get the elements
+  const bg = document.getElementById('bgMusic');
+  const mbtn = document.getElementById('musicToggle');
+  const popup = document.getElementById('introPopup');
 
-  /* Class to trigger the rotation and fade-out */
-  .fade-out {
-    opacity: 0;
-    transform: rotate(360deg) scale(0); /* Rotate and shrink */
-  }
-</style>
+  let playing = false;
+
+  // 1. Logic for the INITIAL POP-UP CLICK
+  popup.addEventListener('click', () => {
+    // Start music (This initial click bypasses the autoplay block)
+    bg.play().catch(() => {});
+    playing = true;
+
+    // Change the music button text immediately
+    mbtn.innerText = 'Pause music';
+
+    // Apply the fade-out animation class
+    popup.classList.add('fade-out');
+
+    // Wait for the transition to finish (1.5s from CSS) and then remove the element
+    popup.addEventListener('transitionend', () => {
+      popup.remove();
+    }, { once: true });
+  });
+
+  // 2. Logic for the EXISTING MUSIC TOGGLE BUTTON
+  mbtn.addEventListener('click', () => {
+    // Only toggle if the popup has been clicked and the music started
+    if (playing) {
+      bg.pause();
+      mbtn.innerText = 'Play music';
+      playing = false;
+    } else {
+      // Use .play() on the audio element, not on the promise result
+      bg.play().catch(() => {});
+      mbtn.innerText = 'Pause music';
+      playing = true;
+    }
+  });
+</script>
